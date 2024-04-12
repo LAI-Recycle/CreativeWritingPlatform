@@ -28,7 +28,9 @@ namespace NotX.Models.Article
             public string Author { get; set; }
             public string Content { get; set; }
             //0下架 1上架
+            public int FavoriteNumber { get; set; }
             public int DisplayStatus { get; set; }
+            public int ClickNumber { get; set; }
             public DateTime CreationTime { get; set; }
         }
 
@@ -49,7 +51,36 @@ namespace NotX.Models.Article
             var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
             ArticleDetail = await _collection.Find(filter).FirstOrDefaultAsync();
 
+            // 增加點擊數
+            if (ArticleDetail.ClickNumber == 0)
+            {
+                ArticleDetail.ClickNumber = 0;
+            }
+            if (ArticleDetail.FavoriteNumber == 0)
+            {
+                ArticleDetail.FavoriteNumber = 0;
+            }
+            ArticleDetail.ClickNumber++;
+
+            var updateDefinition = Builders<Article>.Update.Set("ClickNumber", ArticleDetail.ClickNumber);
+            await _collection.UpdateOneAsync(filter, updateDefinition);
+
             return true;
+        }
+
+        public async Task<bool> AddFavoriteNumber()
+        {
+            var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
+            ArticleDetail = await _collection.Find(filter).FirstOrDefaultAsync();
+
+            // 增加愛心
+            ArticleDetail.FavoriteNumber++;
+
+            var updateDefinition = Builders<Article>.Update.Set("FavoriteNumber", ArticleDetail.FavoriteNumber);
+            await _collection.UpdateOneAsync(filter, updateDefinition);
+
+            return true;
+
         }
     }
 }

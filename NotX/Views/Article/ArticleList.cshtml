@@ -1,32 +1,62 @@
 @model NotX.Models.Article.ArticleListModel
 
-<main aria-labelledby="title">
-    <a href="@Url.Action("AddArticleDetail", "Article" )" class="link-black">創建</a>
+<style>
+    .card {
+        transition: transform 0.3s ease, border-color 0.3s ease;
+    }
 
-    @if (Model != null)
-    {
-        foreach (var product in Model.ArticleList)
-        {
-            
-            <div class="card">
-                <div class="card-body">
-                    <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = product.ArticleId })" class="link-black">
-                        <h5 class="card-title">@product.Title</h5>
-                    </a>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                            @if (product.Content.Length > 30)
+    .card:hover {
+        transform: scale(1.05);
+        border-color: blue;
+    }
+
+    .link-black {
+        color: black; /* 將連結顏色設置為黑色 */
+        text-decoration: none; /* 移除連結的下劃線 */
+    }
+</style>
+
+<main aria-labelledby="title">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div style="display: flex;">
+                    <div style="flex: 8;">
+                        <a type="button" class="btn btn-outline-secondary" href="@Url.Action("AddArticleDetail", "Article" )" role="button">創作</a>
+                        @if (Model != null)
+                        {
+                            foreach (var product in Model.ArticleList)
                             {
-                                @product.Content.Substring(0, 30)
+
+                                <div class="card" style="margin-bottom: 20px;">
+                                    <div class="card-body">
+                                        <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = product.ArticleId })" class="link-black">
+                                            <h5 class="card-title">@product.Title</h5>
+
+                                            <h6 class="card-subtitle mb-2 text-muted">
+                                                @if (product.Content.Length > 30)
+                                                {
+                                                    @product.Content.Substring(0, 30)
+                                                }
+                                                else
+                                                {
+                                                    @product.Content
+                                                }
+                                            </h6>
+
+                                            <a href="#" class="link-black">作者：@product.Author</a>
+                                            <p class="card-text">發布時間：@product.CreationTime</p>
+                                        </a>
+                                    </div>
+                                </div>
                             }
-                            else
-                            {
-                                @product.Content
-                            }
-                        </h6>
-                        <p class="card-text">發布：@product.Author</p>
-                        <a href="#" class="card-link">@product.CreationTime</a>
+                        }
+                    </div>
+                    <div style="flex: 4;">
+                        <!-- 第二個卡片，佔比 4 -->
+                    </div>
                 </div>
             </div>
-        }
-    }
+        </div>
+    </div>
 </main>

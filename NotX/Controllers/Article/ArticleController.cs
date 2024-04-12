@@ -20,6 +20,12 @@ namespace NotX.Controllers.Article
 
         public async Task<ActionResult> ArticleDetail(ArticleDetailModel model)
         {
+            //暫時
+            if (model.Choose_ArticleId <= 0)
+            {
+                model.Choose_ArticleId = 2;
+            }
+
             await model.GetArticleDetail();
 
             return View(model);
@@ -28,6 +34,12 @@ namespace NotX.Controllers.Article
         public async Task<ActionResult> AddArticleDetail(ArticleListModel model)
         {
             await model.AddArticleDetail();
+
+            return View("ArticleList");
+        }
+        public async Task<ActionResult> AddFavoriteNumber(ArticleDetailModel model)
+        {
+            await model.AddFavoriteNumber();
 
             return View("ArticleList");
         }

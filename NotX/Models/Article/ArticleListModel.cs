@@ -27,6 +27,8 @@ namespace NotX.Models.Article
             public string Author { get; set; }
             public string Content { get; set; }
             //0下架 1上架
+            public int FavoriteNumber { get; set; }
+            public int ClickNumber { get; set; }
             public int DisplayStatus { get; set; }
             public DateTime CreationTime { get; set; }
         }
@@ -61,6 +63,8 @@ namespace NotX.Models.Article
             {
                 Title = "南港",
                 ArticleId = articleId,
+                ClickNumber = 0,
+                FavoriteNumber = 0,
                 DisplayStatus = 1,
                 Author = "Karla Chen",
                 CreationTime = DateTime.Now,

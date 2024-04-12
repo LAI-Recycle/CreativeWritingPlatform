@@ -1,9 +1,105 @@
 @model NotX.Models.Article.ArticleDetailModel
 
+<style>
+    /* 將分享列固定在畫面底部 */
+    .fixed-bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f9fa;
+        padding: 10px;
+        z-index: 999; /* 確保在最上層 */
+    }
+</style>
+
 <main aria-labelledby="title">
     @if (Model.ArticleDetail != null)
     {
-        <h1>@Model.ArticleDetail.Title</h1>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col text-left">
+                            <a type="button" class="btn btn-outline-secondary" href="@Url.Action("ArticleList", "Article" )" role="button">返回</a>
+                        </div>
+                        <div class="col text-end">
+                            <p>點擊數：@Model.ArticleDetail.ClickNumber</p>
+                        </div>
+                    </div>
+
+                    <br />
+                    <h1>@Model.ArticleDetail.Title</h1>
+                    <div class="row">
+                        <div class="col text-left">
+                            <h6>@Model.ArticleDetail.Author</h6>
+                        </div>
+                        <div class="col text-end">
+                            <h6>@Model.ArticleDetail.CreationTime</h6>
+                        </div>
+                    </div>
+                    <br />
+                    <p>@Model.ArticleDetail.Content</p>
+                    <!-- 您的文章內容 -->
+                    <br />
+                    <hr>
+                    <br />
+                    <div class="row">
+                        <div class="col text-left">
+                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId-1 })" )">上一篇</a>
+                        </div>
+                        <div class="col text-end">
+                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId+1 })" )">下一篇</a>
+                        </div>
+                    </div>
+                    <br />
+                    <hr>
+                    <br />
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>作者資料：@Model.ArticleDetail.Author</h5>
+                            <p>作者簡介：你好</p>
+                        </div>
+                    </div>
+                    <br />
+                    <hr>
+                    <br />
+                </div>
+            </div>
+        </div>
+
     }
 
 </main>
+
+<div class="fixed-bottom-bar">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col text-left">
+                        <div style="display: flex; align-items: center;">
+                            <div>@Model.ArticleDetail.Author</div>
+                        </div>
+                    </div>
+                    <div class="col text-end">
+                        <a class="btn btn-outline-danger" role="button" href=# )">
+                            <div style="display: flex; align-items: center;">
+                                <div class="material-symbols-outlined" style="display: inline-block;">bookmark</div>
+                                <div style="display: inline-block; margin-left: 5px;">收藏</div>
+                            </div>
+                        </a>
+                        <a class="btn btn-outline-danger" role="button" href="@Url.Action("AddFavoriteNumber", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId } )">
+                            <div style="display: flex; align-items: center;">
+                                <div class="material-symbols-outlined" style="display: inline-block;">favorite</div>
+                                <div style="display: inline-block; margin-left: 5px;">@Model.ArticleDetail.FavoriteNumber</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
