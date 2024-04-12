@@ -23,7 +23,7 @@ namespace NotX.Models.Article
         public class Article
         {
             public ObjectId Id { get; set; }
-            public string ArticleId { get; set; }
+            public int ArticleId { get; set; }
             public string Title { get; set; }
             public string Author { get; set; }
             public string Content { get; set; }
@@ -46,7 +46,7 @@ namespace NotX.Models.Article
 
         public async Task<bool> GetArticleDetail()
         {
-            var filter = Builders<Article>.Filter.Eq("ArticleId", "3");
+            var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
             ArticleDetail = await _collection.Find(filter).FirstOrDefaultAsync();
 
             return true;
