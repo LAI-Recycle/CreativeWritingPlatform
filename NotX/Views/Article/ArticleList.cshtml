@@ -1,0 +1,32 @@
+@model NotX.Models.Article.ArticleListModel
+
+<main aria-labelledby="title">
+    <a href="@Url.Action("AddArticleDetail", "Article" )" class="link-black">³Ð«Ø</a>
+
+    @if (Model != null)
+    {
+        foreach (var product in Model.ArticleList)
+        {
+            
+            <div class="card">
+                <div class="card-body">
+                    <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = product.ArticleId })" class="link-black">
+                        <h5 class="card-title">@product.Title</h5>
+                    </a>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            @if (product.Content.Length > 30)
+                            {
+                                @product.Content.Substring(0, 30)
+                            }
+                            else
+                            {
+                                @product.Content
+                            }
+                        </h6>
+                        <p class="card-text">µo¥¬¡G@product.Author</p>
+                        <a href="#" class="card-link">@product.CreationTime</a>
+                </div>
+            </div>
+        }
+    }
+</main>
