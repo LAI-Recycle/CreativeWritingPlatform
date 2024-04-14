@@ -49,7 +49,7 @@ namespace NotX.Controllers.Article
         {
             await model.AddFavoriteNumber();    
 
-            return View("ArticleList");
+            return Json(true);
         }
     }
 }
