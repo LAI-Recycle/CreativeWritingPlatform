@@ -237,6 +237,7 @@
     </Compile>
     <Compile Include="Models\Article\ArticleDetailModel.cs" />
     <Compile Include="Models\Article\ArticleListModel.cs" />
+    <Compile Include="Models\Article\ArticleCreateDetailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +296,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Article\ArticleList.cshtml" />
     <Content Include="Views\Article\ArticleDetail.cshtml" />
+    <Content Include="Views\Article\ArticleCreateDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

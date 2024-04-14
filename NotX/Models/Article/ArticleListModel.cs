@@ -18,7 +18,6 @@ namespace NotX.Models.Article
         /// </summary>
         public List<Article> ArticleList { get; set; }
 
-
         public class Article
         {
             public ObjectId Id { get; set; }
@@ -50,50 +49,6 @@ namespace NotX.Models.Article
             ArticleList = await _collection.Find(new BsonDocument()).ToListAsync();
 
             return true;
-        }
-        /// <summary>
-        /// 新增一篇文章
-        /// </summary>
-        /// <returns></returns>
-        public async Task<bool> AddArticleDetail()
-        {
-            var articleId = await GetMaxArticleId();
-
-            var article = new Article
-            {
-                Title = "南港",
-                ArticleId = articleId,
-                ClickNumber = 0,
-                FavoriteNumber = 0,
-                DisplayStatus = 1,
-                Author = "Karla Chen",
-                CreationTime = DateTime.Now,
-                Content = "覺得看好來只是在"
-            };
-
-            await _collection.InsertOneAsync(article);
-
-            return true;
-        }
-        /// <summary>
-        /// 取得最新的ArticleId
-        /// </summary>
-        /// <returns></returns>
-        public async Task<int> GetMaxArticleId()
-        {
-            var maxArticle = await _collection.Find(new BsonDocument())
-                                              .Sort(Builders<Article>.Sort.Descending(a => a.ArticleId))
-                                              .Limit(1)
-                                              .FirstOrDefaultAsync();
-
-            if (maxArticle != null)
-            {
-                return maxArticle.ArticleId + 1;
-            }
-            else
-            {
-                return 1;
-            }
         }
     }
 }

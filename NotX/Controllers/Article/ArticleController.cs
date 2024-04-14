@@ -1,10 +1,5 @@
-﻿using MongoDB.Bson;
-using NotX.Models.Article;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using NotX.Models.Article;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NotX.Controllers.Article
@@ -31,15 +26,28 @@ namespace NotX.Controllers.Article
             return View(model);
         }
 
-        public async Task<ActionResult> AddArticleDetail(ArticleListModel model)
+        public async Task<ActionResult> ArticleCreateDetail(ArticleCreateDetailModel model)
         {
-            await model.AddArticleDetail();
-
-            return View("ArticleList");
+            if (model.ActionType == "create")
+            {
+                await model.AddArticleDetail();
+            }
+            else if (model.ActionType == "read")
+            {
+                model.GetAddArticleDetail();
+                return View(model);
+            }
+            else if (model.ActionType == "back")
+            {
+                
+            }
+            return RedirectToAction("ArticleList", "Article");
         }
+
+
         public async Task<ActionResult> AddFavoriteNumber(ArticleDetailModel model)
         {
-            await model.AddFavoriteNumber();
+            await model.AddFavoriteNumber();    
 
             return View("ArticleList");
         }

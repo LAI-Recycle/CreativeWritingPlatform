@@ -22,7 +22,10 @@
             <div class="col-lg-10">
                 <div style="display: flex;">
                     <div style="flex: 8;">
-                        <a type="button" class="btn btn-outline-secondary" href="@Url.Action("AddArticleDetail", "Article" )" role="button">創作</a>
+                        <div class="col text-left">
+                            <a type="button" class="btn btn-outline-secondary" href="@Url.Action("ArticleCreateDetail", "Article")" role="button">創作</a>
+                        </div>
+                        <br />
                         @if (Model != null)
                         {
                             foreach (var product in Model.ArticleList)
