@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NotX.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,16 +14,26 @@ namespace NotX.Controllers
             return View();
         }
 
-        public ActionResult About()
+        /// <summary>
+        /// 測試登入
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult LoginTest()
         {
-            ViewBag.Message = "Your application description page.";
-
+            //驗證成功後
+            Session["UserRole"] = "Member";
             return View();
         }
 
-        public ActionResult Contact()
+        [AuthorizeFilter(UserRole.Member)]
+        public ActionResult MemberPage() 
         {
+            return View();
+        }
 
+        [AuthorizeFilter(UserRole.Admin)]
+        public ActionResult AdminPage()
+        {
             return View();
         }
     }

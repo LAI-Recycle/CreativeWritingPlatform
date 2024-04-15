@@ -20,12 +20,29 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("首頁", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("關於", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("旅遊", "CategoryList", "Category", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("商品", "CategoryList", "Category", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("文章", "ArticleList", "Article", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("聯絡", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("聯絡", "Contact", "Contact", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
+                <div class="btn-group">
+                    @if (Session["UserRole"] == "Member" || Session["UserRole"] == "Admin")
+                    {
+                        <a type="button" class="btn btn-light" href="@Url.Action("Logout", "Member" )">登出</a>
+                    }
+                    else
+                    {
+                        <a type="button" class="btn btn-light" href="@Url.Action("LoginPage", "Member" )">登入</a>
+                    }
+                </div>
             </div>
+            
+                <!--
+                <div class="btn-group">
+                    <button type="button" class="btn btn-light" onclick="changeLanguage('zh-TW')">繁體中文</button>
+                    <button type="button" class="btn btn-light" onclick="changeLanguage('zh-CN')">简体中文</button>
+                </div>
+                    -->
+
         </div>
     </nav>
     <div class="container body-content">
