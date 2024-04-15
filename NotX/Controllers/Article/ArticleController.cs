@@ -15,13 +15,18 @@ namespace NotX.Controllers.Article
 
         public async Task<ActionResult> ArticleDetail(ArticleDetailModel model)
         {
-            //暫時
+            //下一頁?
             if (model.Choose_ArticleId <= 0)
             {
                 model.Choose_ArticleId = 2;
             }
 
             await model.GetArticleDetail();
+
+            if (model.ActionType == "read")
+            {
+                await model.AddClickNumber();
+            }
 
             return View(model);
         }

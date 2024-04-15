@@ -1,10 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Data.Entity;
 
 namespace NotX.Models.Article
@@ -20,6 +17,8 @@ namespace NotX.Models.Article
         /// 選擇文章ID
         /// </summary>
         public int Choose_ArticleId { get; set; }
+
+        public string ActionType { get; set; }
         public class Article
         {
             public ObjectId Id { get; set; }
@@ -34,6 +33,7 @@ namespace NotX.Models.Article
             public DateTime CreationTime { get; set; }
         }
 
+
         private readonly IMongoCollection<Article> _collection;
 
         public ArticleDetailModel()
@@ -47,6 +47,14 @@ namespace NotX.Models.Article
         }
 
         public async Task<bool> GetArticleDetail()
+        {
+            var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
+            ArticleDetail = await _collection.Find(filter).FirstOrDefaultAsync();
+
+            return true;
+        }
+
+        public async Task<bool> AddClickNumber()
         {
             var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
             ArticleDetail = await _collection.Find(filter).FirstOrDefaultAsync();
@@ -66,6 +74,7 @@ namespace NotX.Models.Article
             await _collection.UpdateOneAsync(filter, updateDefinition);
 
             return true;
+
         }
 
         public async Task<bool> AddFavoriteNumber()

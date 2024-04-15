@@ -48,10 +48,10 @@
                     <br />
                     <div class="row">
                         <div class="col text-left">
-                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId-1 })" )">上一篇</a>
+                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId-1 ,ActionType="read"})" )">上一篇</a>
                         </div>
                         <div class="col text-end">
-                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId+1 })" )">下一篇</a>
+                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId+1 ,ActionType="read"})" )">下一篇</a>
                         </div>
                     </div>
                     <br />
@@ -88,7 +88,7 @@
                         <a class="btn btn-outline-danger" role="button" href=# )">
                             <div style="display: flex; align-items: center;">
                                 <div class="material-symbols-outlined" style="display: inline-block;">bookmark</div>
-                                <div style="display: inline-block; margin-left: 5px;">收藏</div>
+                                <div style="display: inline-block; margin-left: 5px;">收藏(無效)</div>
                             </div>
                         </a>
                         <button type="button" class="btn btn-outline-danger" onclick="Choose_Cityname_onChange( @Model.ArticleDetail.ArticleId)">                           
@@ -97,7 +97,6 @@
                                 <div style="display: inline-block; margin-left: 5px;">@Model.ArticleDetail.FavoriteNumber</div>
                             </div>
                         </button>
-
                     </div>
                 </div>
             </div>

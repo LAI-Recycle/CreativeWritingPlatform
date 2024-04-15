@@ -33,15 +33,18 @@
 
                                 <div class="card" style="margin-bottom: 20px;">
                                     <div class="card-body">
-                                        <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = product.ArticleId })" class="link-black">
+                                        <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = product.ArticleId, ActionType = "read"})" class="link-black">
                                             <h5 class="card-title">@product.Title</h5>
 
                                             <h6 class="card-subtitle mb-2 text-muted">
-                                                @if (product.Content.Length > 30)
+                                                @if(product.Content == null)
+                                                { 
+                                                }
+                                                else if (product.Content.Length > 30)
                                                 {
                                                     @product.Content.Substring(0, 30)
                                                 }
-                                                else
+                                                else if (product.Content.Length < 30)
                                                 {
                                                     @product.Content
                                                 }
