@@ -24,9 +24,10 @@
                     <div class="row">
                         <div class="col text-left">
                             <a type="button" class="btn btn-outline-secondary" href="@Url.Action("ArticleList", "Article" )" role="button">返回</a>
-                        </div>
-                        <div class="col text-end">
-                            <p>點擊數：@Model.ArticleDetail.ClickNumber</p>
+                        </div>  
+                        <div class="col text-right">
+                            <div class="float-end">瀏覽數：@Model.ArticleDetail.ClickNumber</div>
+                            <div class="material-symbols-outlined float-end">visibility</div>
                         </div>
                     </div>
 
@@ -69,7 +70,6 @@
                 </div>
             </div>
         </div>
-
     }
 
 </main>

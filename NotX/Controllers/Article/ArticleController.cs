@@ -8,6 +8,7 @@ namespace NotX.Controllers.Article
     {
         public async Task<ActionResult> ArticleList(ArticleListModel model)
         {
+            model.InitDict();
             await model.GetArticleList();
 
             return View(model);
@@ -15,6 +16,7 @@ namespace NotX.Controllers.Article
 
         public async Task<ActionResult> ArticleDetail(ArticleDetailModel model)
         {
+
             //下一頁?
             if (model.Choose_ArticleId <= 0)
             {
