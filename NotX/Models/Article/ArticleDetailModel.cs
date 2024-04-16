@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Configuration;
 
 namespace NotX.Models.Article
 {
@@ -39,8 +40,9 @@ namespace NotX.Models.Article
 
         public ArticleDetailModel()
         {
-            //string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
-            string connectionString = "mongodb+srv://Lai:20240400@20240411lion.ncaf5nq.mongodb.net/?retryWrites=true&w=majority&appName=20240411Lion";
+            string username = ConfigurationManager.AppSettings["Username"];
+            string password = ConfigurationManager.AppSettings["Password"];
+            string connectionString = $"mongodb+srv://{username}:{password}@20240411lion.ncaf5nq.mongodb.net/?retryWrites=true&w=majority&appName=20240411Lion";
             string databaseName = "20240400NotX";
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(databaseName);
