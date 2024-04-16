@@ -24,6 +24,7 @@ namespace NotX.Models.Article
             public ObjectId Id { get; set; }
             public int ArticleId { get; set; }
             public string Title { get; set; }
+            public int AuthorID { get; set; }
             public string Author { get; set; }
             public string Content { get; set; }
             //0下架 1上架

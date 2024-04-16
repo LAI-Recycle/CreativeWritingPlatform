@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NotX.Models.User
@@ -24,7 +26,28 @@ namespace NotX.Models.User
             public DateTime CreationTime { get; set; }
         }
 
+        /// <summary>
+        /// 文章清單
+        /// </summary>
+        public List<Article> ArticleList { get; set; }
+
+        public class Article
+        {
+            public ObjectId Id { get; set; }
+            public int ArticleId { get; set; }
+            public string Title { get; set; }
+            public int AuthorID { get; set; }
+            public string Author { get; set; }
+            public string Content { get; set; }
+            //0下架 1上架
+            public int FavoriteNumber { get; set; }
+            public int ClickNumber { get; set; }
+            public int DisplayStatus { get; set; }
+            public DateTime CreationTime { get; set; }
+        }
+
         private readonly IMongoCollection<User> _collection;
+        private readonly IMongoCollection<Article> _collectionArticle;
 
         public UserPageModel()
         {
@@ -33,12 +56,22 @@ namespace NotX.Models.User
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(databaseName);
             _collection = database.GetCollection<User>("Member");
+            _collectionArticle = database.GetCollection<Article>("Article");
         }
 
         public async Task<bool> GetUserDetail() 
         {
             var filter = Builders<User>.Filter.Eq("MemberID", InputMemberID);
             UserData = await _collection.Find(filter).FirstOrDefaultAsync();
+
+            return true;
+        }
+
+        public async Task<bool> GetArticleList()
+        {
+            var filter = Builders<Article>.Filter.Eq("AuthorID", InputMemberID);
+            ArticleList = await _collectionArticle.Find(filter).ToListAsync();
+            ArticleList = ArticleList.OrderByDescending(article => article.CreationTime).ToList();
 
             return true;
         }

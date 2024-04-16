@@ -1,9 +1,6 @@
 ﻿using NotX.Models.User;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NotX.Controllers.User
@@ -18,6 +15,7 @@ namespace NotX.Controllers.User
         {
             model.InputMemberID = Convert.ToInt32(Session["UserMemberID"]);
             await model.GetUserDetail();
+            await model.GetArticleList();
 
             return View(model);
         }
@@ -39,7 +37,7 @@ namespace NotX.Controllers.User
             model.InputMemberID = Convert.ToInt32(Session["UserMemberID"]);
             await model.UpdateUserDetail();
 
-            return View(model);
+            return RedirectToAction("UserPage", "User");
         }
     }
 }

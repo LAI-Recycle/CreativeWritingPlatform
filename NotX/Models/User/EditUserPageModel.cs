@@ -10,6 +10,8 @@ namespace NotX.Models.User
         public int InputMemberID { get; set; }
         public User UserData { get; set; }
 
+        public User EditUserData { get; set; }
+
         public class User
         {
             public ObjectId Id { get; set; }
@@ -42,13 +44,18 @@ namespace NotX.Models.User
 
             return true;
         }
-
+        
         public async Task<bool> UpdateUserDetail()
         {
-            var filter = Builders<User>.Filter.Eq("MemberID", InputMemberID);
-            UserData = await _collection.Find(filter).FirstOrDefaultAsync();
+            var filter = Builders<User>.Filter.Eq("MemberID", InputMemberID) ;
+            var update = Builders<User>.Update
+                .Set("Introduction", EditUserData.Introduction)
+                .Set("PhoneNumber", EditUserData.PhoneNumber);
+
+            await _collection.UpdateOneAsync(filter, update);
 
             return true;
         }
+
     }
 }

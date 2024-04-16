@@ -6,24 +6,43 @@
 <main aria-labelledby="title">
     <div class="container">
 
-        <h3>@Model.UserData.Name </h3>
+        <h1>@Model.UserData.Name </h1>
+        <hr />
+        <form class="form-signin" action="/User/UpdateUserPage" method="POST">
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">加入時間</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" value="@Model.UserData.CreationTime" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">帳號</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" value="@Model.UserData.Account" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">權限</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" value="@Session["UserRole"]" />
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="EditUserData.PhoneNumber" placeholder="PhoneNumber" value="@Model.UserData.PhoneNumber">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">自我介紹</label>
+                <div class="form-floating col-sm-10">
+                    <textarea class="form-control" name="EditUserData.Introduction" placeholder="PhoneNumber" style="min-height: 150px; max-height: 200px; overflow-y: auto;">@Model.UserData.Introduction</textarea>
+                </div>
+            </div>
 
-        <p>帳號：@Model.UserData.Account</p>
-        <p>權限：@Session["UserRole"]</p>
-        <p>加入時間：@Model.UserData.CreationTime</p>
+            <button class="btn btn-outline-secondary" type="submit">儲存</button>
+            <a class="btn btn-outline-secondary" href="/User/UserPage" role="button">返回個人資料</a>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Phone:</span>
-            <input type="text" class="form-control" placeholder="PhoneNumber" aria-label="PhoneNumber" aria-describedby="basic-addon1" value="@Model.UserData.PhoneNumber">
-        </div>
-
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">自我介紹:</span>
-            <input type="text" class="form-control" placeholder="Introduction" aria-label="Introduction" aria-describedby="basic-addon1" value="@Model.UserData.Introduction">
-        </div>
-
-        <div class="mb-4 text-center">
-            <p><a href="/User/UserPage">返回個人資料</a></p>
-        </div>
+        </form>
     </div>
 </main>
