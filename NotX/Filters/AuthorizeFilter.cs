@@ -71,7 +71,7 @@ namespace NotX.Filters
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
             // 當權限檢查失敗時，跳頁至登入頁
-            filterContext.Result = new RedirectResult("~/Home/Index");
+            filterContext.Result = new RedirectResult("~/Home/Index?ErrorMsg=unauthorized");
         }
     }
 }

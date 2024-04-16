@@ -13,6 +13,8 @@ namespace NotX.Models.Member
         /// </summary>
         public Login InputLoginDetail { get; set; }
 
+        public string LoginUserName { get; set; }
+
         public class Login
         {
             public ObjectId Id { get; set; }
@@ -46,6 +48,8 @@ namespace NotX.Models.Member
         {
             var filter = Builders<Login>.Filter.Eq("Account", InputLoginDetail.Account);
             var MemberExist = await _collection.Find(filter).FirstOrDefaultAsync();
+
+            LoginUserName = MemberExist.Name;
 
             //加密
             var unhashPassword = InputLoginDetail.Password;
