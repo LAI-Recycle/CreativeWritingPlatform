@@ -3,14 +3,20 @@
         <div class="text-center mb-4 ">
             <h1 class="font-weight-normal mb-3">Sign In</h1>
         </div>
+        @if (@ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Message
+            </div>
+        }
         <form class="form-signin" action="/Member/Login" method="POST">
             <div class="form-row mb-3">
                 <label class="form-label" for="email">Email</label>
-                <input class="form-control" id="email" type="text" name="email" placeholder="Email" required autofocus>
+                <input class="form-control" id="InputLoginDetail.Account" name="InputLoginDetail.Account" placeholder="Email" required autofocus>
             </div>
             <div class="form-row mb-3">
                 <label class="form-label" for="password">Password</label>
-                <input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
+                <input class="form-control" id="InputLoginDetail.Password" name="InputLoginDetail.Password" placeholder="Password" required>
             </div>
 
             <button class="btn btn-outline-secondary" type="submit">Submit</button>

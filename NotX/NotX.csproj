@@ -243,6 +243,8 @@
     <Compile Include="Models\Article\ArticleListModel.cs" />
     <Compile Include="Models\Article\ArticleCreateDetailModel.cs" />
     <Compile Include="Models\Category\CategoryListModel.cs" />
+    <Compile Include="Models\Member\LoginModel.cs" />
+    <Compile Include="Models\Member\SignUpModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
