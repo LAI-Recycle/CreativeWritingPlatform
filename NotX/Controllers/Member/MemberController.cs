@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using NotX.Models.Member;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace NotX.Controllers.Login
@@ -18,14 +16,26 @@ namespace NotX.Controllers.Login
         }
 
         /// <summary>
-        /// 登入介面
+        /// 登入
         /// </summary>
         /// <returns></returns>
-        public ActionResult Logout()
+        public async Task<ActionResult> Login(LoginModel model)
         {
-            Session.Remove("UserRole");
+            bool LoginResponse = await model.CheckMemberDetail();
 
-            return RedirectToAction("Index", "Home");
+            if (LoginResponse)
+            {
+                Session["UserRole"] = "Member";
+                Session["UserName"] = model.LoginUser.Name;
+                Session["UserMemberID"] = model.LoginUser.MemberID;
+                return RedirectToAction("Index", "Home");
+            }
+            else 
+            {
+                //登入失敗
+                ViewBag.Message = "登入錯誤";
+                return View("LoginPage");
+            }
         }
 
         /// <summary>
@@ -36,16 +46,38 @@ namespace NotX.Controllers.Login
         {
             return View();
         }
-        
 
         /// <summary>
-        /// 登入
+        /// 註冊
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> SignUp(SignUpModel model)
+        {
+            bool MemberExist = await model.CheckMemberExist();
+
+            if (MemberExist)
+            {
+                //你已經存在
+                return RedirectToAction("SignUpPage", "Member");
+            }
+            else
+            {
+                //註冊成功
+                await model.AddMemberDetail();
+                return RedirectToAction("LoginPage", "Member");
+            }
+        }
+
+        /// <summary>
+        /// 登出
         /// </summary>
         /// <returns></returns>
-        public ActionResult Login()
+        public ActionResult Logout()
         {
-            //驗證成功後
-            Session["UserRole"] = "Member";
+            Session.Remove("UserRole");
+            Session.Remove("UserName");
+            Session.Remove("UserMemberID");
             return RedirectToAction("Index", "Home");
         }
     }

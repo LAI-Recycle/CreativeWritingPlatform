@@ -1,9 +1,12 @@
-﻿using NotX.Models.Article;
+﻿using NotX.Filters;
+using NotX.Models.Article;
+using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace NotX.Controllers.Article
 {
+    [AuthorizeFilter(UserRole.Member)]
     public class ArticleController : Controller
     {
         public async Task<ActionResult> ArticleList(ArticleListModel model)
@@ -37,6 +40,8 @@ namespace NotX.Controllers.Article
         {
             if (model.ActionType == "create")
             {
+                model.InputArticle.AuthorID = Convert.ToInt32(Session["UserMemberID"]);
+                model.InputArticle.Author = Session["UserName"].ToString();
                 await model.AddArticleDetail();
             }
             else if (model.ActionType == "read")
@@ -50,7 +55,6 @@ namespace NotX.Controllers.Article
             }
             return RedirectToAction("ArticleList", "Article");
         }
-
 
         public async Task<ActionResult> AddFavoriteNumber(ArticleDetailModel model)
         {

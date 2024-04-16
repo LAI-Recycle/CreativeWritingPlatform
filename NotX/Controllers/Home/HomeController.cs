@@ -1,27 +1,17 @@
 ﻿using NotX.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using NotX.Models.Home;
 using System.Web.Mvc;
 
 namespace NotX.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(HomeModel model)
         {
-            return View();
-        }
-
-        /// <summary>
-        /// 測試登入
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult LoginTest()
-        {
-            //驗證成功後
-            Session["UserRole"] = "Member";
+            if (model.ErrorMsg == "unauthorized")
+            {
+                ViewBag.Message = "請登入會員";
+            }
             return View();
         }
 

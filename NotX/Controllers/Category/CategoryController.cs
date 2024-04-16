@@ -1,10 +1,5 @@
-﻿using NotX.Models.Article;
-using NotX.Models.Category;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using NotX.Models.Category;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NotX.Controllers.Category

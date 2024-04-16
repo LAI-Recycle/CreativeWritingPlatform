@@ -1,20 +1,30 @@
+@{
+    ViewBag.Title = "Sign In";
+}
+
 <main>
     <div class="container">
         <div class="text-center mb-4 ">
             <h1 class="font-weight-normal mb-3">Sign In</h1>
         </div>
-        <form class="form-signin" action="/Member/Login" method="POST">
-            <div class="form-row mb-3">
-                <label class="form-label" for="email">Email</label>
-                <input class="form-control" id="email" type="text" name="email" placeholder="Email" required autofocus>
+        @if (@ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.Message
             </div>
-            <div class="form-row mb-3">
-                <label class="form-label" for="password">Password</label>
-                <input class="form-control" id="password" type="password" name="password" placeholder="Password" required>
-            </div>
+        }
+    <form class="form-signin" action="/Member/Login" method="POST">
+        <div class="form-row mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" id="InputLoginDetail.Account" name="InputLoginDetail.Account" placeholder="Email" required autofocus>
+        </div>
+        <div class="form-row mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" id="InputLoginDetail.Password" name="InputLoginDetail.Password" placeholder="Password" required>
+        </div>
 
-            <button class="btn btn-outline-secondary" type="submit">Submit</button>
-        </form>
+        <button class="btn btn-outline-secondary" type="submit">Submit</button>
+    </form>
 
         <div class="mb-4 text-center">
             <p><a href="/Member/SignUpPage">Sign Up</a></p>
