@@ -1,0 +1,21 @@
+
+@{
+    ViewBag.Title = "個人頁面";
+}
+
+<main aria-labelledby="title">
+    <div class="container">
+
+        <h3>@Model.UserData.Name </h3>
+
+        <p>帳號：@Model.UserData.Account</p>
+        <p>權限：@Session["UserRole"]</p>
+        <p>加入時間：@Model.UserData.CreationTime</p>
+        <p>Phone:@Model.UserData.PhoneNumber</p>
+        <p>自我介紹:@Model.UserData.Introduction </p>
+
+        <div class="mb-4 text-center">
+            <p><a href="/User/EditUserPage">編輯</a></p>
+        </div>
+    </div>
+</main>

@@ -1,5 +1,4 @@
-﻿using NotX.Filters;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace NotX.Controllers.Contact
 {

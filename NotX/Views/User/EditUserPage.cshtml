@@ -1,0 +1,29 @@
+
+@{
+    ViewBag.Title = "編輯個人頁面";
+}
+
+<main aria-labelledby="title">
+    <div class="container">
+
+        <h3>@Model.UserData.Name </h3>
+
+        <p>帳號：@Model.UserData.Account</p>
+        <p>權限：@Session["UserRole"]</p>
+        <p>加入時間：@Model.UserData.CreationTime</p>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Phone:</span>
+            <input type="text" class="form-control" placeholder="PhoneNumber" aria-label="PhoneNumber" aria-describedby="basic-addon1" value="@Model.UserData.PhoneNumber">
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">自我介紹:</span>
+            <input type="text" class="form-control" placeholder="Introduction" aria-label="Introduction" aria-describedby="basic-addon1" value="@Model.UserData.Introduction">
+        </div>
+
+        <div class="mb-4 text-center">
+            <p><a href="/User/UserPage">返回個人資料</a></p>
+        </div>
+    </div>
+</main>

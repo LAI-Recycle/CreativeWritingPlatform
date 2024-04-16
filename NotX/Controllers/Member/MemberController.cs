@@ -26,7 +26,8 @@ namespace NotX.Controllers.Login
             if (LoginResponse)
             {
                 Session["UserRole"] = "Member";
-                Session["UserName"] = model.LoginUserName;
+                Session["UserName"] = model.LoginUser.Name;
+                Session["UserMemberID"] = model.LoginUser.MemberID;
                 return RedirectToAction("Index", "Home");
             }
             else 
@@ -76,6 +77,7 @@ namespace NotX.Controllers.Login
         {
             Session.Remove("UserRole");
             Session.Remove("UserName");
+            Session.Remove("UserMemberID");
             return RedirectToAction("Index", "Home");
         }
     }

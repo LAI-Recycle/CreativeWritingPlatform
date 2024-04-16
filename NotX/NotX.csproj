@@ -235,6 +235,7 @@
     <Compile Include="Controllers\Contact\ContactController.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Member\MemberController.cs" />
+    <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,6 +247,8 @@
     <Compile Include="Models\Home\HomeModel.cs" />
     <Compile Include="Models\Member\LoginModel.cs" />
     <Compile Include="Models\Member\SignUpModel.cs" />
+    <Compile Include="Models\User\EditUserPageModel.cs" />
+    <Compile Include="Models\User\UserPageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -310,13 +313,12 @@
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Member\LoginPage.cshtml" />
     <Content Include="Views\Member\SignUpPage.cshtml" />
+    <Content Include="Views\User\UserPage.cshtml" />
+    <Content Include="Views\User\EditUserPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\User\" />
-    <Folder Include="Models\User\" />
     <Folder Include="Scripts\Category\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

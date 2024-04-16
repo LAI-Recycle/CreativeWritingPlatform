@@ -13,7 +13,7 @@ namespace NotX.Models.Member
         /// </summary>
         public Login InputLoginDetail { get; set; }
 
-        public string LoginUserName { get; set; }
+        public Login LoginUser { get; set; }
 
         public class Login
         {
@@ -23,6 +23,7 @@ namespace NotX.Models.Member
             public string Account { get; set; }
             public string Password { get; set; }
             public string PhoneNumber { get; set; }
+            public string Introduction { get; set; }
             //Visitor = 0, Member = 1, Admin = 2
             public int Authentication { get; set; }
             public DateTime CreationTime { get; set; }
@@ -49,8 +50,6 @@ namespace NotX.Models.Member
             var filter = Builders<Login>.Filter.Eq("Account", InputLoginDetail.Account);
             var MemberExist = await _collection.Find(filter).FirstOrDefaultAsync();
 
-            LoginUserName = MemberExist.Name;
-
             //加密
             var unhashPassword = InputLoginDetail.Password;
             HashAlgorithm sha = SHA256.Create();
@@ -62,6 +61,7 @@ namespace NotX.Models.Member
             {
                 if (MemberExist.Password == hashPassword)
                 {
+                    LoginUser = MemberExist;
                     return true;
                 }
             }

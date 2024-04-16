@@ -1,12 +1,8 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace NotX.Models.Member
 {
@@ -25,6 +21,7 @@ namespace NotX.Models.Member
             public string Account { get; set; }
             public string Password { get; set; }
             public string PhoneNumber { get; set; }
+            public string Introduction { get; set; }
             //Visitor = 0, Member = 1, Admin = 2
             public int Authentication { get; set; }
             public DateTime CreationTime { get; set; }
@@ -85,6 +82,7 @@ namespace NotX.Models.Member
                 Account = InputSignUpDetail.Account,
                 Password = hashPassword,
                 PhoneNumber = InputSignUpDetail.PhoneNumber,
+                Introduction = string.Empty,
                 Authentication = 1,
                 CreationTime = DateTime.UtcNow,
             };

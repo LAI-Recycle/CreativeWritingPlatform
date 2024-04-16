@@ -28,13 +28,14 @@
                     @if (Session["UserRole"] == "Member" || Session["UserRole"] == "Admin")
                     {
                         <a type="button" class="btn btn-light" href="">Hi 歡迎!</a>
-                        <a type="button" class="btn btn-light" href="@Url.Action("Logout", "Member" )">登出</a>
+                        <a type="button" class="btn btn-light" href="@Url.Action("UserPage", "User")">個人頁面</a>
+                        <a type = "button" class="btn btn-light" href="@Url.Action("Logout", "Member" )">登出</a>
                     }
                     else
                     {
-                        <a type="button" class="btn btn-light" href="@Url.Action("SignUpPage", "Member" )">註冊</a>
-                        <a type="button" class="btn btn-light" href="@Url.Action("LoginPage", "Member" )">登入</a>
-                    }
+                <a type="button" class="btn btn-light" href="@Url.Action("SignUpPage", "Member" )">註冊</a>
+                <a type="button" class="btn btn-light" href="@Url.Action("LoginPage", "Member" )">登入</a>
+                                    }
                 </div>
             </div>
             
