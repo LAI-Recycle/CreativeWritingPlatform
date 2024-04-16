@@ -9,9 +9,17 @@
             @ViewBag.Message
         </div>
     }
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    
+
+        <div style="display: flex;">
+            <div class="px-4 py-5 my-5 text-center" style="flex: 8;">
+                <h1 id="title">記錄生活點滴的創作平台</h1>
+                <p class="lead">一杯豆漿的時間，記錄下你的生活點滴。</p>
+                <p><a type="button" class="m-3 btn btn-primary btn-md" href="@Url.Action("LoginPage", "Member" )">立刻登入&raquo;</a></p>
+            </div>
+            <div class="px-4 py-5 my-5 text-center" style="flex: 4;">
+                <div class="material-symbols-outlined" style="font-size: 150px;"> emoji_objects </div>
+            </div>
+        </div>
+
 </main>
