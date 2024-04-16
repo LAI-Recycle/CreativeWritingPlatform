@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# 忽略Web.config文件
+Web.config
+
 # User-specific files
 *.rsuser
 *.suo
