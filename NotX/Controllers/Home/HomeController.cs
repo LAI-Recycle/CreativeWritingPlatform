@@ -10,17 +10,6 @@ namespace NotX.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 測試登入
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult LoginTest()
-        {
-            //驗證成功後
-            Session["UserRole"] = "Member";
-            return View();
-        }
-
         [AuthorizeFilter(UserRole.Member)]
         public ActionResult MemberPage() 
         {

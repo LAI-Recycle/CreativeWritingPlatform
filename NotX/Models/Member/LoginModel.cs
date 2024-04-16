@@ -1,4 +1,6 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Threading.Tasks;
 
 namespace NotX.Models.Member
@@ -12,9 +14,15 @@ namespace NotX.Models.Member
 
         public class Login
         {
+            public ObjectId Id { get; set; }
+            public int MemberID { get; set; }
+            public string Name { get; set; }
             public string Account { get; set; }
             public string Password { get; set; }
+            public string PhoneNumber { get; set; }
+            //Visitor = 0, Member = 1, Admin = 2
             public int Authentication { get; set; }
+            public DateTime CreationTime { get; set; }
         }
 
         private readonly IMongoCollection<Login> _collection;
@@ -35,25 +43,17 @@ namespace NotX.Models.Member
         /// <returns></returns>
         public async Task<bool> CheckMemberDetail()
         {
-            
             var filter = Builders<Login>.Filter.Eq("Account", InputLoginDetail.Account);
             var MemberExist = await _collection.Find(filter).FirstOrDefaultAsync();
 
-            if (MemberExist == null) 
+            if (MemberExist != null) 
             {
-                return false;
+                if (MemberExist.Password == InputLoginDetail.Password)
+                {
+                    return true;
+                }
             }
-            //密碼比對
-            if (MemberExist.Password == InputLoginDetail.Password)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-
-
     }
 }

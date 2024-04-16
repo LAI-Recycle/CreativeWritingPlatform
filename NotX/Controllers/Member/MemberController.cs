@@ -1,9 +1,5 @@
 ﻿using NotX.Models.Member;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NotX.Controllers.Login
@@ -39,7 +35,6 @@ namespace NotX.Controllers.Login
                 return View("LoginPage");
             }
         }
-
 
         /// <summary>
         /// 註冊介面

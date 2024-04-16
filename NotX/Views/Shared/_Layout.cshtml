@@ -27,6 +27,7 @@
                 <div class="btn-group">
                     @if (Session["UserRole"] == "Member" || Session["UserRole"] == "Admin")
                     {
+                        <a type="button" class="btn btn-light" href="">Hi 歡迎!</a>
                         <a type="button" class="btn btn-light" href="@Url.Action("Logout", "Member" )">登出</a>
                     }
                     else
