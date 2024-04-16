@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web;
@@ -70,13 +71,19 @@ namespace NotX.Models.Member
         {
             var memberId = await GetMaxMemberId();
 
+            //加密
+            var unhashPassword = InputSignUpDetail.Password;
+            HashAlgorithm sha = SHA256.Create();
+            byte[] byteArray = System.Text.Encoding.Default.GetBytes(unhashPassword);
+            byte[] result = sha.ComputeHash(byteArray);
+            string hashPassword = System.Text.Encoding.Default.GetString(result);
+
             var member = new SignUp
             {
                 MemberID = memberId,
                 Name = InputSignUpDetail.Name,
                 Account = InputSignUpDetail.Account,
-                //加密
-                Password = InputSignUpDetail.Password,
+                Password = hashPassword,
                 PhoneNumber = InputSignUpDetail.PhoneNumber,
                 Authentication = 1,
                 CreationTime = DateTime.UtcNow,

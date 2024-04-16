@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace NotX.Models.Member
@@ -8,7 +9,7 @@ namespace NotX.Models.Member
     public class LoginModel
     {
         /// <summary>
-        /// 樹入註冊表
+        /// 輸入註冊表
         /// </summary>
         public Login InputLoginDetail { get; set; }
 
@@ -46,9 +47,16 @@ namespace NotX.Models.Member
             var filter = Builders<Login>.Filter.Eq("Account", InputLoginDetail.Account);
             var MemberExist = await _collection.Find(filter).FirstOrDefaultAsync();
 
+            //加密
+            var unhashPassword = InputLoginDetail.Password;
+            HashAlgorithm sha = SHA256.Create();
+            byte[] byteArray = System.Text.Encoding.Default.GetBytes(unhashPassword);
+            byte[] result = sha.ComputeHash(byteArray);
+            string hashPassword = System.Text.Encoding.Default.GetString(result);
+
             if (MemberExist != null) 
             {
-                if (MemberExist.Password == InputLoginDetail.Password)
+                if (MemberExist.Password == hashPassword)
                 {
                     return true;
                 }
