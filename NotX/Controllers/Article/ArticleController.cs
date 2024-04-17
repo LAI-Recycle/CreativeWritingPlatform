@@ -19,7 +19,6 @@ namespace NotX.Controllers.Article
 
         public async Task<ActionResult> ArticleDetail(ArticleDetailModel model)
         {
-
             //下一頁?
             if (model.Choose_ArticleId <= 0)
             {
@@ -27,6 +26,7 @@ namespace NotX.Controllers.Article
             }
 
             await model.GetArticleDetail();
+            await model.GetUserDetail();
 
             if (model.ActionType == "read")
             {

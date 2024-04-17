@@ -15,8 +15,6 @@ namespace NotX.Models.Article
         /// </summary>
         public List<Article> ArticleList { get; set; }
 
-        
-
         public class Article
         {
             public ObjectId Id { get; set; }
@@ -51,8 +49,7 @@ namespace NotX.Models.Article
             ChooseOrderConditionDict.Add("ClickNumber", "瀏覽量");
             ChooseOrderConditionDict.Add("Title", "標題名稱" );
         }
-       
-
+      
         private readonly IMongoCollection<Article> _collection;
 
         public ArticleListModel()

@@ -39,7 +39,7 @@
                 <h1>@Model.ArticleDetail.Title</h1>
                 <div class="row">
                     <div class="col text-left">
-                        <h6>@Model.ArticleDetail.Author</h6>
+                        <h6>@Model.UserData.Name</h6>
                     </div>
                     <div class="col text-end">
                         <h6>@Model.ArticleDetail.CreationTime</h6>
@@ -64,8 +64,8 @@
                 <br />
                 <div class="card">
                     <div class="card-body">
-                        <h5>作者資料：@Model.ArticleDetail.Author</h5>
-                        <p>作者簡介：(接資料庫)</p>
+                        <h5>作者資料：@Model.UserData.Name</h5>
+                        <p>作者簡介：@Model.UserData.Introduction</p>
                     </div>
                 </div>
                 <br />
@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col text-left">
                         <div style="display: flex; align-items: center;">
-                            <div>作者：@Model.ArticleDetail.Author</div>
+                            <div>作者：@Model.UserData.Name</div>
                         </div>
                     </div>
                     <div class="col text-end">
