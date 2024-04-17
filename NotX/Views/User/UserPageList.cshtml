@@ -1,0 +1,30 @@
+<style>
+    .nav-pills .nav-link:not(.active) {
+        color: #000000;
+        background-color: rgb(255, 255, 255);
+    }
+
+    .nav-pills .nav-link.active {
+        color: rgb(255, 255, 255);
+        background-color: #000000;
+    }
+</style>
+
+<main aria-labelledby="title">
+    <div class="container">
+        <div class="d-flex align-items-start">
+            <div class="nav flex-column nav-pills me-5 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <button class="mb-1 nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">資料檢視</button>
+                <button class="mb-1 nav-link" id="v-pills-editprofile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-editprofile" type="button" role="tab" aria-controls="v-pills-editprofile" aria-selected="false">資料編輯</button>
+                <button class="mb-1 nav-link" id="v-pills-article-tab" data-bs-toggle="pill" data-bs-target="#v-pills-article" type="button" role="tab" aria-controls="v-pills-article" aria-selected="false">我的文章</button>
+                <button class="mb-1 nav-link" id="v-pills-collect-tab" data-bs-toggle="pill" data-bs-target="#v-pills-collect" type="button" role="tab" aria-controls="v-pills-collect" aria-selected="false">我的收藏</button>
+            </div>
+            <div class="flex-fill tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">@Html.Partial("UserDetail/UserPage")</div>
+                <div class="tab-pane fade" id="v-pills-editprofile" role="tabpanel" aria-labelledby="v-pills-editprofile-tab">@Html.Partial("UserDetail/EditUserPage")</div>
+                <div class="tab-pane fade" id="v-pills-article" role="tabpanel" aria-labelledby="v-pills-article-tab">@Html.Partial("UserDetail/UserArticle")</div>
+                <div class="tab-pane fade" id="v-pills-collect" role="tabpanel" aria-labelledby="v-pills-collect-tab">...</div>
+            </div>
+        </div>
+    </div>
+</main>

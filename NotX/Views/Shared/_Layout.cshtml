@@ -32,7 +32,7 @@
                     @if (Session["UserRole"] != null && (Session["UserRole"].ToString() == "Member" || Session["UserRole"].ToString() == "Admin"))
                     {
                         <a type="button" class="btn btn-light" href="">Hi 歡迎!</a>
-                        <a type="button" class="btn btn-light" href="@Url.Action("UserPage", "User")">個人頁面</a>
+                        <a type="button" class="btn btn-light" href="@Url.Action("UserPageList", "User")">個人頁面</a>
                         <a type="button" class="btn btn-light" href="@Url.Action("Logout", "Member" )">登出</a>
                     }
                     else
@@ -55,8 +55,9 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 一杯豆漿</p>
+        <footer >
+            <div>&copy; @DateTime.Now.Year - 一杯豆漿</div>
+            <div>Currently v1.0.0.</div>
         </footer>
     </div>
 

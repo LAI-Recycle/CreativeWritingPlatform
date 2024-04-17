@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NotX.Models.User
 {
-    public class UserPageModel
+    public class UserPageListModel
     {
         public int InputMemberID { get; set; }
         public User UserData { get; set; }
@@ -50,7 +50,7 @@ namespace NotX.Models.User
         private readonly IMongoCollection<User> _collection;
         private readonly IMongoCollection<Article> _collectionArticle;
 
-        public UserPageModel()
+        public UserPageListModel()
         {
             string username = ConfigurationManager.AppSettings["Username"];
             string password = ConfigurationManager.AppSettings["Password"];

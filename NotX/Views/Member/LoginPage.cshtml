@@ -3,8 +3,8 @@
 }
 
 <main>
-    <div class="container">
-        <div class="text-center mb-4 ">
+    <div class="container mb-5">
+        <div class="mb-4 ">
             <h1 class="font-weight-normal mb-3">Sign In</h1>
         </div>
         @if (@ViewBag.Message != null)
@@ -13,21 +13,17 @@
                 @ViewBag.Message
             </div>
         }
-    <form class="form-signin" action="/Member/Login" method="POST">
-        <div class="form-row mb-3">
-            <label class="form-label" for="email">Email</label>
-            <input class="form-control" id="InputLoginDetail.Account" name="InputLoginDetail.Account" placeholder="Email" required autofocus>
-        </div>
-        <div class="form-row mb-3">
-            <label class="form-label" for="password">Password</label>
-            <input class="form-control" id="InputLoginDetail.Password" name="InputLoginDetail.Password" placeholder="Password" required>
-        </div>
-
-        <button class="btn btn-outline-secondary" type="submit">Submit</button>
-    </form>
-
-        <div class="mb-4 text-center">
-            <p><a href="/Member/SignUpPage">Sign Up</a></p>
-        </div>
+        <form class="form-signin" action="/Member/Login" method="POST">
+            <div class="form-row mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" id="InputLoginDetail.Account" name="InputLoginDetail.Account" placeholder="Email" required autofocus>
+            </div>
+            <div class="form-row mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" id="InputLoginDetail.Password" name="InputLoginDetail.Password" placeholder="Password" required>
+            </div>
+            <button class="btn btn-outline-primary" type="submit">µn¤J</button>
+            <a class="btn btn-outline-secondary" href="/Member/SignUpPage" type="button">Sign Up</a>
+        </form>
     </div>
 </main>

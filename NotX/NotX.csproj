@@ -248,8 +248,9 @@
     <Compile Include="Models\Member\LoginModel.cs" />
     <Compile Include="Models\Member\SignUpModel.cs" />
     <Compile Include="Models\User\EditUserPageModel.cs" />
-    <Compile Include="Models\User\UserPageModel.cs" />
+    <Compile Include="Models\User\UserPageListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Views\User\UserPageList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -313,8 +314,9 @@
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Member\LoginPage.cshtml" />
     <Content Include="Views\Member\SignUpPage.cshtml" />
-    <Content Include="Views\User\UserPage.cshtml" />
-    <Content Include="Views\User\EditUserPage.cshtml" />
+    <Content Include="Views\User\UserDetail\UserPage.cshtml" />
+    <Content Include="Views\User\UserDetail\EditUserPage.cshtml" />
+    <Content Include="Views\User\UserDetail\UserArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

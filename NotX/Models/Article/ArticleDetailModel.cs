@@ -35,7 +35,6 @@ namespace NotX.Models.Article
             public DateTime CreationTime { get; set; }
         }
 
-
         private readonly IMongoCollection<Article> _collection;
 
         public ArticleDetailModel()

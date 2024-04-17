@@ -11,23 +11,11 @@ namespace NotX.Controllers.User
         /// 個人介面
         /// </summary>
         /// <returns></returns>
-        public async Task<ActionResult> UserPage(UserPageModel model)
+        public async Task<ActionResult> UserPageList(UserPageListModel model)
         {
             model.InputMemberID = Convert.ToInt32(Session["UserMemberID"]);
             await model.GetUserDetail();
             await model.GetArticleList();
-
-            return View(model);
-        }
-
-        /// <summary>
-        /// 修改個人資訊
-        /// </summary>
-        /// <returns></returns>
-        public async Task<ActionResult> EditUserPage(EditUserPageModel model)
-        {
-            model.InputMemberID = Convert.ToInt32(Session["UserMemberID"]);
-            await model.GetUserDetail();
 
             return View(model);
         }
@@ -37,7 +25,7 @@ namespace NotX.Controllers.User
             model.InputMemberID = Convert.ToInt32(Session["UserMemberID"]);
             await model.UpdateUserDetail();
 
-            return RedirectToAction("UserPage", "User");
+            return RedirectToAction("UserPageList", "User");
         }
     }
 }

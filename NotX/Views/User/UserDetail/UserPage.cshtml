@@ -1,0 +1,37 @@
+<form class="form-signin">
+    @if (Model.UserData != null)
+    {
+        <h1>@Model.UserData.Name </h1>
+        <hr />
+        <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">加入時間</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" value="@Model.UserData.CreationTime" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">帳號</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" value="@Model.UserData.Account" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">權限</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" value="@Session["UserRole"]" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">Phone</label>
+            <div class="col-sm-8">
+                <input type="text" readonly class="form-control-plaintext" value="@Model.UserData.PhoneNumber" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4 col-form-label">自我介紹</label>
+            <div class="col-sm-8">
+                <textarea class="form-control-plaintext" name="EditUserData.Introduction" placeholder="PhoneNumber" style="min-height: 150px; max-height: 200px; overflow-y: auto;">@Model.UserData.Introduction</textarea>
+            </div>
+        </div>
+    }
+</form>

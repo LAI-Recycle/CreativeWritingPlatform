@@ -20,62 +20,61 @@
 </style>
 
 <main aria-labelledby="title">
-    @if (Model.ArticleDetail != null)
-    {
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col text-left">
-                            <a type="button" class="btn btn-outline-secondary" href="@Url.Action("ArticleList", "Article" )" role="button">返回</a>
-                        </div>
-                        <div class="col text-right">
-                            <div class="float-end">瀏覽數：@Model.ArticleDetail.ClickNumber</div>
-                            <div class="material-symbols-outlined float-end">visibility</div>
-                        </div>
+    <div class="container mb-5">
+        @if (Model.ArticleDetail != null)
+        {
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col text-left">
+                        <a type="button" class="btn btn-outline-secondary" href="@Url.Action("ArticleList", "Article" )" role="button">返回</a>
                     </div>
-
-                    <br />
-                    <h1>@Model.ArticleDetail.Title</h1>
-                    <div class="row">
-                        <div class="col text-left">
-                            <h6>@Model.ArticleDetail.Author</h6>
-                        </div>
-                        <div class="col text-end">
-                            <h6>@Model.ArticleDetail.CreationTime</h6>
-                        </div>
+                    <div class="col text-right">
+                        <div class="float-end">瀏覽數：@Model.ArticleDetail.ClickNumber</div>
+                        <div class="material-symbols-outlined float-end">visibility</div>
                     </div>
-                    <br />
-                    <p>@Model.ArticleDetail.Content</p>
-                    <!-- 您的文章內容 -->
-                    <br />
-                    <hr>
-                    <br />
-                    <div class="row">
-                        <div class="col text-left">
-                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId-1 ,ActionType="read"})" )">上一篇</a>
-                        </div>
-                        <div class="col text-end">
-                            <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId+1 ,ActionType="read"})" )">下一篇</a>
-                        </div>
-                    </div>
-                    <br />
-                    <hr>
-                    <br />
-                    <div class="card">
-                        <div class="card-body">
-                            <h5>作者資料：@Model.ArticleDetail.Author</h5>
-                            <p>作者簡介：你好</p>
-                        </div>
-                    </div>
-                    <br />
-                    <hr>
-                    <br />
                 </div>
+
+                <br />
+                <h1>@Model.ArticleDetail.Title</h1>
+                <div class="row">
+                    <div class="col text-left">
+                        <h6>@Model.ArticleDetail.Author</h6>
+                    </div>
+                    <div class="col text-end">
+                        <h6>@Model.ArticleDetail.CreationTime</h6>
+                    </div>
+                </div>
+                <br />
+                <p>@Model.ArticleDetail.Content</p>
+                <!-- 您的文章內容 -->
+                <br />
+                <hr>
+                <br />
+                <div class="row">
+                    <div class="col text-left">
+                        <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId-1 ,ActionType="read"})" )">上一篇</a>
+                    </div>
+                    <div class="col text-end">
+                        <a href="@Url.Action("ArticleDetail", "Article", new { Choose_ArticleId = Model.ArticleDetail.ArticleId+1 ,ActionType="read"})" )">下一篇</a>
+                    </div>
+                </div>
+                <br />
+                <hr>
+                <br />
+                <div class="card">
+                    <div class="card-body">
+                        <h5>作者資料：@Model.ArticleDetail.Author</h5>
+                        <p>作者簡介：(接資料庫)</p>
+                    </div>
+                </div>
+                <br />
+                <hr>
+                <br />
             </div>
         </div>
-    }
-
+        }
+    </div>
 </main>
 
 <div class="fixed-bottom-bar">
@@ -85,7 +84,7 @@
                 <div class="row">
                     <div class="col text-left">
                         <div style="display: flex; align-items: center;">
-                            <div>@Model.ArticleDetail.Author</div>
+                            <div>作者：@Model.ArticleDetail.Author</div>
                         </div>
                     </div>
                     <div class="col text-end">
