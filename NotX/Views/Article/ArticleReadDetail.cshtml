@@ -92,13 +92,15 @@
                         </div>
                     </div>
                     <div class="col text-end">
-                        <a class="btn btn-outline-danger" role="button" href=# )">
+                        
+                        <button type="button" class="btn btn-outline-danger" onclick = "@(Model.HadCollect ? $"Choose_unCollect_onChange("+ Model.ArticleDetail.ArticleId+")":$"Choose_Collect_onChange("+ Model.ArticleDetail.ArticleId+")")">
                             <div style="display: flex; align-items: center;">
                                 <div class="material-symbols-outlined" style="display: inline-block;">bookmark</div>
-                                <div style="display: inline-block; margin-left: 5px;">收藏(無效)</div>
+                                <div style="display: inline-block; margin-left: 5px;">收藏</div>
                             </div>
-                        </a>
-                        <button type="button" class="btn btn-outline-danger" onclick="Choose_Cityname_onChange(@Model.ArticleDetail.ArticleId)">
+                        </button>
+                        
+                        <button type="button" class="btn btn-outline-danger" onclick="Choose_Favorite_onChange(@Model.ArticleDetail.ArticleId)">
                             <div style="display: flex; align-items: center;">
                                 <div class="material-symbols-outlined" style="display: inline-block;">favorite</div>
                                 <div style="display: inline-block; margin-left: 5px;">@Model.ArticleDetail.FavoriteNumber</div>

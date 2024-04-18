@@ -235,6 +235,7 @@
     <Compile Include="Controllers\Contact\ContactController.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Member\MemberController.cs" />
+    <Compile Include="Controllers\Collect\CollectController.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -247,9 +248,11 @@
     <Compile Include="Models\Home\HomeModel.cs" />
     <Compile Include="Models\Member\LoginModel.cs" />
     <Compile Include="Models\Member\SignUpModel.cs" />
+    <Compile Include="Models\Collect\CollectListModel.cs" />
     <Compile Include="Models\User\EditUserPageModel.cs" />
     <Compile Include="Models\User\UserPageListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Views\User\UserDetail\UserCollect.cshtml" />
     <None Include="Web.example.config" />
     <Content Include="Views\User\UserPageList.cshtml" />
   </ItemGroup>

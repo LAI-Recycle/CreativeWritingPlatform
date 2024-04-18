@@ -8,7 +8,6 @@ namespace NotX.Controllers.Category
     {
         public async Task<ActionResult> CategoryList(CategoryListModel model)
         {
-
             return View(model);
         }
     }

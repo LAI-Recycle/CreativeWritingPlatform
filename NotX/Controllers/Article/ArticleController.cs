@@ -1,4 +1,5 @@
-﻿using NotX.Filters;
+﻿using Amazon.Runtime;
+using NotX.Filters;
 using NotX.Models.Article;
 using System;
 using System.Threading.Tasks;
@@ -27,7 +28,13 @@ namespace NotX.Controllers.Article
 
             await model.GetArticleDetail();
             await model.GetUserDetail();
+            await model.GetCollectDetail();
 
+            if (model.CollectDetail!=null)
+            { 
+                model.HadCollect = true;
+            }
+            
             if (model.ActionType == "read")
             {
                 await model.AddClickNumber();

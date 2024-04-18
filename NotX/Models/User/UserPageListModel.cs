@@ -47,8 +47,28 @@ namespace NotX.Models.User
             public DateTime CreationTime { get; set; }
         }
 
+        /// <summary>
+        /// 收藏文章清單
+        /// </summary>
+        public List<Article> CollectArticleList { get; set; }
+
+        /// <summary>
+        /// 收藏清單
+        /// </summary>
+        public List<Collect> CollectList { get; set; }
+
+        public class Collect
+        {
+            public ObjectId Id { get; set; }
+            public int CollectID { get; set; }
+            public int MemberID { get; set; }
+            public int ArticleId { get; set; }
+            public DateTime CreationTime { get; set; }
+        }
+
         private readonly IMongoCollection<User> _collection;
         private readonly IMongoCollection<Article> _collectionArticle;
+        private readonly IMongoCollection<Collect> _collectionCollect;
 
         public UserPageListModel()
         {
@@ -60,8 +80,14 @@ namespace NotX.Models.User
             var database = client.GetDatabase(databaseName);
             _collection = database.GetCollection<User>("Member");
             _collectionArticle = database.GetCollection<Article>("Article");
+            _collectionCollect = database.GetCollection<Collect>("Collect");
+        
         }
 
+        /// <summary>
+        /// 取得使用者資料
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> GetUserDetail() 
         {
             var filter = Builders<User>.Filter.Eq("MemberID", InputMemberID);
@@ -70,11 +96,44 @@ namespace NotX.Models.User
             return true;
         }
 
+        /// <summary>
+        /// 取得文章列表
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> GetArticleList()
         {
             var filter = Builders<Article>.Filter.Eq("AuthorID", InputMemberID);
             ArticleList = await _collectionArticle.Find(filter).ToListAsync();
             ArticleList = ArticleList.OrderByDescending(article => article.CreationTime).ToList();
+
+            return true;
+        }
+
+        /// <summary>
+        /// 取得收藏列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> GetUserCollectList()
+        {
+            var filter = Builders<Collect>.Filter.Eq("MemberID", InputMemberID);
+            CollectList = await _collectionCollect.Find(filter).ToListAsync();
+            CollectList = CollectList.OrderByDescending(article => article.CreationTime).ToList();
+
+            await GetUserCollectArticleList();
+
+            return true;
+        }
+
+        /// <summary>
+        /// 使用收藏列表取得文章列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> GetUserCollectArticleList()
+        {
+            var articleids = CollectList.Select(item => item.ArticleId).ToList();
+            var filter = Builders<Article>.Filter.In("ArticleId", articleids);
+            CollectArticleList = await _collectionArticle.Find(filter).ToListAsync();
+            CollectArticleList = CollectArticleList.OrderByDescending(article => article.CreationTime).ToList();
 
             return true;
         }

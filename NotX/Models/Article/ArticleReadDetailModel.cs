@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace NotX.Models.Article
 {
@@ -51,8 +52,27 @@ namespace NotX.Models.Article
             public DateTime CreationTime { get; set; }
         }
 
+        /// <summary>
+        /// 是否已經收藏
+        /// </summary>
+        public bool HadCollect { get; set; } = false;
+        /// <summary>
+        /// 收藏細節
+        /// </summary>
+        public Collect CollectDetail { get; set; }
+
+        public class Collect
+        {
+            public ObjectId Id { get; set; }
+            public int CollectID { get; set; }
+            public int MemberID { get; set; }
+            public int ArticleId { get; set; }
+            public DateTime CreationTime { get; set; }
+        }
+
         private readonly IMongoCollection<Article> _collection;
         private readonly IMongoCollection<User> _collectionUser;
+        private readonly IMongoCollection<Collect> _collectionCollect;
 
         public ArticleReadDetailModel()
         {
@@ -64,6 +84,7 @@ namespace NotX.Models.Article
             var database = client.GetDatabase(databaseName);
             _collection = database.GetCollection<Article>("Article");
             _collectionUser = database.GetCollection<User>("Member");
+            _collectionCollect = database.GetCollection<Collect>("Collect");
         }
 
         public async Task<bool> GetArticleDetail()
@@ -117,6 +138,18 @@ namespace NotX.Models.Article
 
             return true;
 
+        }
+
+        /// <summary>
+        /// 取得收藏詳細
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> GetCollectDetail()
+        {
+            var filter = Builders<Collect>.Filter.Eq("ArticleId", Choose_ArticleId);
+            CollectDetail = await _collectionCollect.Find(filter).FirstOrDefaultAsync();
+
+            return true;
         }
     }
 }

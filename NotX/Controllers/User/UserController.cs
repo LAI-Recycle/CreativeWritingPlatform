@@ -16,10 +16,15 @@ namespace NotX.Controllers.User
             model.InputMemberID = Convert.ToInt32(Session["UserMemberID"]);
             await model.GetUserDetail();
             await model.GetArticleList();
-
+            await model.GetUserCollectList();
             return View(model);
         }
 
+        /// <summary>
+        /// 更新個人介面
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<ActionResult> UpdateUserPage(EditUserPageModel model)
         {
             model.InputMemberID = Convert.ToInt32(Session["UserMemberID"]);
