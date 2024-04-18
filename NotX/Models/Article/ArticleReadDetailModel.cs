@@ -7,7 +7,7 @@ using System.Configuration;
 
 namespace NotX.Models.Article
 {
-    public class ArticleDetailModel
+    public class ArticleReadDetailModel
     {
         /// <summary>
         /// 文章詳情
@@ -54,7 +54,7 @@ namespace NotX.Models.Article
         private readonly IMongoCollection<Article> _collection;
         private readonly IMongoCollection<User> _collectionUser;
 
-        public ArticleDetailModel()
+        public ArticleReadDetailModel()
         {
             string username = ConfigurationManager.AppSettings["Username"];
             string password = ConfigurationManager.AppSettings["Password"];

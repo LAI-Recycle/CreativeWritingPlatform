@@ -1,13 +1,23 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-using System.Configuration;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Configuration;
 
 namespace NotX.Models.Article
 {
-    public class ArticleCreateDetailModel
+    public class ArticleUpdateDetailModel
     {
+        /// <summary>
+        /// 文章詳情
+        /// </summary>
+        public Article ArticleDetail { get; set; }
+
+        /// <summary>
+        /// 選擇編輯文章ID
+        /// </summary>
+        public int Choose_ArticleId { get; set; }
         public class Article
         {
             public ObjectId Id { get; set; }
@@ -24,10 +34,11 @@ namespace NotX.Models.Article
         }
         public string ActionType { get; set; }
         public Article InputArticle { get; set; }
+        public int New_ArticleId { get; set; }
 
         private readonly IMongoCollection<Article> _collection;
 
-        public ArticleCreateDetailModel()
+        public ArticleUpdateDetailModel()
         {
             string username = ConfigurationManager.AppSettings["Username"];
             string password = ConfigurationManager.AppSettings["Password"];
@@ -38,21 +49,17 @@ namespace NotX.Models.Article
             _collection = database.GetCollection<Article>("Article");
         }
 
-        public bool GetAddArticleDetail()
-        {
-            return true;
-        }
         /// <summary>
-        /// 新增一篇文章
+        /// 新增文章
         /// </summary>
         /// <returns></returns>
         public async Task<bool> AddArticleDetail()
         {
-            var articleId = await GetMaxArticleId();
+            New_ArticleId = await GetMaxArticleId();
            
             var article = new Article
             {
-                ArticleId = articleId,
+                ArticleId = New_ArticleId,
                 Title = InputArticle.Title,
                 AuthorID = InputArticle.AuthorID,
                 Author = InputArticle.Author,
@@ -64,6 +71,34 @@ namespace NotX.Models.Article
             };
 
             await _collection.InsertOneAsync(article);
+
+            return true;
+        }
+
+        /// <summary>
+        /// 抓取文章資訊
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> GetArticleDetail()
+        {
+            var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
+            ArticleDetail = await _collection.Find(filter).FirstOrDefaultAsync();
+
+            return true;
+        }
+
+        /// <summary>
+        /// 更新文章
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> UpdateArticleDetail()
+        {
+            var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
+            var update = Builders<Article>.Update
+                .Set("Title", InputArticle.Title)
+                .Set("Content", InputArticle.Content);
+
+            await _collection.UpdateOneAsync(filter, update);
 
             return true;
         }

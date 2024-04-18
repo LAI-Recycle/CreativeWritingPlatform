@@ -12,10 +12,9 @@ function UpdateDetail(Choose_ArticleId) {
         dataType: "json",
         async: false,
         success: function () {
-            window.location.href = window.location.href + '?ActionType=create';
+            window.location.href = '/Article/ArticleReadDetail?Choose_ArticleId=' + Choose_ArticleId + '&ActionType=create'
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            debugger;
             _AddJsErrMessage("");
             _ShowJsErrMessageBox();
         }

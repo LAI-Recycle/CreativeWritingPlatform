@@ -240,9 +240,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Article\ArticleDetailModel.cs" />
+    <Compile Include="Models\Article\ArticleReadDetailModel.cs" />
     <Compile Include="Models\Article\ArticleListModel.cs" />
-    <Compile Include="Models\Article\ArticleCreateDetailModel.cs" />
+    <Compile Include="Models\Article\ArticleUpdateDetailModel.cs" />
     <Compile Include="Models\Category\CategoryListModel.cs" />
     <Compile Include="Models\Home\HomeModel.cs" />
     <Compile Include="Models\Member\LoginModel.cs" />
@@ -273,8 +273,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="mongocrypt.dll" />
-    <Content Include="Scripts\Article\ArticleCreateDetail.js" />
-    <Content Include="Scripts\Article\ArticleDetail.js" />
+    <Content Include="Scripts\Article\ArticleUpdateDetail.js" />
+    <Content Include="Scripts\Article\ArticleReadDetail.js" />
     <Content Include="Scripts\Article\ArticleList.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -309,8 +309,8 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Article\ArticleList.cshtml" />
-    <Content Include="Views\Article\ArticleDetail.cshtml" />
-    <Content Include="Views\Article\ArticleCreateDetail.cshtml" />
+    <Content Include="Views\Article\ArticleReadDetail.cshtml" />
+    <Content Include="Views\Article\ArticleUpdateDetail.cshtml" />
     <Content Include="Views\Category\CategoryList.cshtml" />
     <Content Include="Views\Member\LoginPage.cshtml" />
     <Content Include="Views\Member\SignUpPage.cshtml" />

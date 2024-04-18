@@ -17,9 +17,9 @@ namespace NotX.Controllers.Article
             return View(model);
         }
 
-        public async Task<ActionResult> ArticleDetail(ArticleDetailModel model)
+        public async Task<ActionResult> ArticleReadDetail(ArticleReadDetailModel model)
         {
-            //下一頁?
+            //上小於0 下一頁大於最大?修改?
             if (model.Choose_ArticleId <= 0)
             {
                 model.Choose_ArticleId = 2;
@@ -36,29 +36,43 @@ namespace NotX.Controllers.Article
             return View(model);
         }
 
-        public async Task<ActionResult> ArticleCreateDetail(ArticleCreateDetailModel model)
+        public async Task<ActionResult> ArticleUpdateDetail(ArticleUpdateDetailModel model)
         {
+            
             if (model.ActionType == "create")
             {
                 model.InputArticle.AuthorID = Convert.ToInt32(Session["UserMemberID"]);
                 model.InputArticle.Author = Session["UserName"].ToString();
                 await model.AddArticleDetail();
+                var Choose_ArticleId = model.New_ArticleId;
+
+                return RedirectToAction("ArticleReadDetail", "Article", new { Choose_ArticleId = Choose_ArticleId }) ;
+            }
+            else if (model.ActionType == "update")
+            {
+                await model.UpdateArticleDetail();
+                var Choose_ArticleId = model.Choose_ArticleId;
+
+                return RedirectToAction("ArticleReadDetail", "Article", new { Choose_ArticleId = Choose_ArticleId });
+            }
+            else if (model.ActionType == "edit")
+            {
+                await model.GetArticleDetail();
+                return View(model);
             }
             else if (model.ActionType == "read")
             {
-                model.GetAddArticleDetail();
-                return View(model);
+                return View();
             }
             else if (model.ActionType == "back")
             {
-                
             }
             return RedirectToAction("ArticleList", "Article");
         }
 
-        public async Task<ActionResult> AddFavoriteNumber(ArticleDetailModel model)
+        public async Task<ActionResult> AddFavoriteNumber(ArticleReadDetailModel model)
         {
-            await model.AddFavoriteNumber();    
+            await model.AddFavoriteNumber();
 
             return Json(true);
         }
