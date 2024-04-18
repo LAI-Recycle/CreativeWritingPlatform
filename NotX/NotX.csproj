@@ -250,7 +250,7 @@
     <Compile Include="Models\User\EditUserPageModel.cs" />
     <Compile Include="Models\User\UserPageListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Web.config.example" />
+    <None Include="Web.example.config" />
     <Content Include="Views\User\UserPageList.cshtml" />
   </ItemGroup>
   <ItemGroup>
