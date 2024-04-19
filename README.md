@@ -1,18 +1,24 @@
 # **一杯豆漿 - 創意寫作平台 Creative writing platform**
 
 ## 簡介
-一杯豆漿是一個紀錄創意的寫作平台，旨在提供用戶一個輕鬆寫作記錄的環境。
+這是一個紀錄創意的寫作平台，旨在提供用戶一個輕鬆寫作記錄的環境。
 
 [創意寫作平台cakeresume製作分享](https://www.cakeresume.com/portfolios/165659)
 
 
 ## 發想
 這個平台的發想來自對於創意寫作的熱愛和追求。致力打造能讓用戶分享創造力跟想法的平台，讓每一個人都能夠成為自己的故事大師。
-
+## 開發工具
+- Microsoft.AspNet.Mvc 5.2.9
+- jQuery 3.4.1
+- Bootstrap 5.2.3
+- MongoDB.Driver 2.24.0
 
 ## 資料關係設計
 
 ![20240400一杯豆漿創作平台資料庫設計 (1)](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/fb2fc784-c920-44d5-afd9-7d3e9d63b0ed)
+
+
 
 ## 初始化注意
 在使用之前，注意更改Web.config文件並填寫相應的用戶名和密碼等資料，這步驟是確保平台資料庫可以使用。
@@ -49,11 +55,3 @@
 
 同樣地，您也可以找到自己收藏的文章，方便您隨時查閱您感興趣的內容。
 ![8 找到自己收藏的文章](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/259410a4-d78a-4624-8922-89bfa53ecace)
-
-
-
-## 開發工具
-- Microsoft.AspNet.Mvc 5.2.9
-- jQuery 3.4.1
-- Bootstrap 5.2.3
-- MongoDB.Driver 2.24.0
