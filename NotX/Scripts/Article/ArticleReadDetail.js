@@ -29,7 +29,6 @@ function Choose_Collect_onChange(Choose_ArticleId) {
 }
 
 function AddCollectDetail(Choose_ArticleId, ActionType) {
-    debugger;
     $.ajax({
         url: "/Collect/CollectList",
         type: "POST",
@@ -49,14 +48,13 @@ function AddCollectDetail(Choose_ArticleId, ActionType) {
     });
 }
 
-//不收藏(後端要的是收藏ID不能給文章ID)
-function Choose_unCollect_onChange(Choose_ArticleId) {
-    //var ActionType = "delete";
-    //UpdateCollectDetail(Choose_ArticleId, ActionType)
+//不收藏
+function Choose_unCollect_onChange( Choose_ArticleId) {
+    var ActionType = "delete";
+    UpdateCollectDetail( Choose_ArticleId, ActionType)
 }
 
-function UpdateCollectDetail(Choose_ArticleId, ActionType) {
-    debugger;
+function UpdateCollectDetail( Choose_ArticleId, ActionType) {
     $.ajax({
         url: "/Collect/CollectList",
         type: "POST",

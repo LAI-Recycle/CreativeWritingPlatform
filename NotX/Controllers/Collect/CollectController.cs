@@ -21,6 +21,7 @@ namespace NotX.Controllers.User
             }
             else if (model.ActionType == "delete")
             {
+                model.Choose_CollectMemberID = Convert.ToInt32(Session["UserMemberID"]);
                 await model.UpdateCollectList();
             }
 

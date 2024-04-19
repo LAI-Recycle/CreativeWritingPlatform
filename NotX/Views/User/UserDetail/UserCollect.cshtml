@@ -43,13 +43,16 @@
                             <p class="card-text">發布時間：@product.CreationTime</p>
                         </div>
                         <div style="display: flex; align-items: center;">
-                            <div>
+                            <div style="display: flex; align-items: center;">
                                 <div class="material-symbols-outlined" style="display: inline-block;">visibility</div>
                                 <div style="display: inline-block;">@product.ClickNumber</div>
                             </div>
-                            <div>
+                            <div style="display: flex; align-items: center;">
                                 <div class="material-symbols-outlined text-danger" style="display: inline-block;">favorite</div>
                                 <div class="text-danger" style="display: inline-block;">@product.FavoriteNumber</div>
+                            </div>
+                            <div>
+                                <div class="material-symbols-outlined text-danger" style="display: inline-block;">bookmark</div>
                             </div>
                         </div>
                     </a>

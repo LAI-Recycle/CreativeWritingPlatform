@@ -98,7 +98,10 @@ namespace NotX.Models.User
         /// <returns></returns>
         public async Task<bool> UpdateCollectList()
         {
-            var filter = Builders<Collect>.Filter.Eq(r => r.CollectID, Choose_CollectID);
+            var filter = Builders<Collect>.Filter.And(
+                Builders<Collect>.Filter.Eq(r => r.MemberID, Choose_CollectMemberID),
+                Builders<Collect>.Filter.Eq(r => r.ArticleId, Choose_CollectArticleId)
+            );
 
             await _collection.DeleteOneAsync(filter);
 

@@ -69,6 +69,10 @@ namespace NotX.Models.Article
             public int ArticleId { get; set; }
             public DateTime CreationTime { get; set; }
         }
+        /// <summary>
+        /// 選擇要收藏的會員ID
+        /// </summary>
+        public int Choose_CollectMemberID { get; set; }
 
         private readonly IMongoCollection<Article> _collection;
         private readonly IMongoCollection<User> _collectionUser;
@@ -137,7 +141,6 @@ namespace NotX.Models.Article
             await _collection.UpdateOneAsync(filter, updateDefinition);
 
             return true;
-
         }
 
         /// <summary>
@@ -146,7 +149,10 @@ namespace NotX.Models.Article
         /// <returns></returns>
         public async Task<bool> GetCollectDetail()
         {
-            var filter = Builders<Collect>.Filter.Eq("ArticleId", Choose_ArticleId);
+            var filter = Builders<Collect>.Filter.And(
+                Builders<Collect>.Filter.Eq("MemberID", Choose_CollectMemberID),
+                Builders<Collect>.Filter.Eq("ArticleId", Choose_ArticleId)
+            );
             CollectDetail = await _collectionCollect.Find(filter).FirstOrDefaultAsync();
 
             return true;

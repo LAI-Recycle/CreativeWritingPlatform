@@ -28,7 +28,7 @@ namespace NotX.Controllers.Login
                 Session["UserRole"] = "Member";
                 Session["UserName"] = model.LoginUser.Name;
                 Session["UserMemberID"] = model.LoginUser.MemberID;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ArticleList", "Article");
             }
             else 
             {
@@ -58,7 +58,6 @@ namespace NotX.Controllers.Login
 
             if (MemberExist)
             {
-                //你已經存在
                 return RedirectToAction("SignUpPage", "Member");
             }
             else

@@ -93,7 +93,9 @@
                     </div>
                     <div class="col text-end">
                         
-                        <button type="button" class="btn btn-outline-danger" onclick = "@(Model.HadCollect ? $"Choose_unCollect_onChange("+ Model.ArticleDetail.ArticleId+")":$"Choose_Collect_onChange("+ Model.ArticleDetail.ArticleId+")")">
+                        <button type="button" 
+                                class="@(Model.HadCollect ? "btn btn-danger":"btn btn-outline-danger")" 
+                                onclick = "@(Model.HadCollect ? $"Choose_unCollect_onChange("+ Model.ArticleDetail.ArticleId +")":$"Choose_Collect_onChange("+ Model.ArticleDetail.ArticleId+")")">
                             <div style="display: flex; align-items: center;">
                                 <div class="material-symbols-outlined" style="display: inline-block;">bookmark</div>
                                 <div style="display: inline-block; margin-left: 5px;">¦¬ÂÃ</div>

@@ -20,6 +20,8 @@ namespace NotX.Controllers.Article
 
         public async Task<ActionResult> ArticleReadDetail(ArticleReadDetailModel model)
         {
+            model.Choose_CollectMemberID = Convert.ToInt32(Session["UserMemberID"]);
+
             //上小於0 下一頁大於最大?修改?
             if (model.Choose_ArticleId <= 0)
             {
