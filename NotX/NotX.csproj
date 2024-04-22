@@ -232,6 +232,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Article\ArticleController.cs" />
     <Compile Include="Controllers\Category\CategoryController.cs" />
+    <Compile Include="Controllers\Comment\CommentController.cs" />
     <Compile Include="Controllers\Contact\ContactController.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Member\MemberController.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="Models\Article\ArticleListModel.cs" />
     <Compile Include="Models\Article\ArticleUpdateDetailModel.cs" />
     <Compile Include="Models\Category\CategoryListModel.cs" />
+    <Compile Include="Models\Comment\CommentModel.cs" />
     <Compile Include="Models\Home\HomeModel.cs" />
     <Compile Include="Models\Member\LoginModel.cs" />
     <Compile Include="Models\Member\SignUpModel.cs" />

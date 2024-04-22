@@ -4,7 +4,6 @@ using System;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Configuration;
-using System.Collections.Generic;
 
 namespace NotX.Models.Article
 {
@@ -129,6 +128,10 @@ namespace NotX.Models.Article
 
         }
 
+        /// <summary>
+        /// 增加文章喜愛數
+        /// </summary>
+        /// <returns></returns>
         public async Task<bool> AddFavoriteNumber()
         {
             var filter = Builders<Article>.Filter.Eq("ArticleId", Choose_ArticleId);
