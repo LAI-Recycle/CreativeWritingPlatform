@@ -7,7 +7,7 @@ namespace NotX.Controllers.Comment
 {
     public class CommentController: Controller
     {
-        public async Task<ActionResult> CommentDetailAsync(CommentModel model)
+        public async Task<ActionResult> CommentDetail(CommentModel model)
         {
             if (model.ActionType == "read")
             {
@@ -19,6 +19,7 @@ namespace NotX.Controllers.Comment
             }
             else if (model.ActionType == "addComment")
             {
+                //20240513問題
                 model.InputComment.MemberID = Convert.ToInt32(Session["UserMemberID"]);
                 model.InputComment.MemberName = Session["UserName"].ToString();
                 await model.AddCommentList();
