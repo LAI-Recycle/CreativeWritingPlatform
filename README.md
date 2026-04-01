@@ -1,57 +1,123 @@
-# **一杯豆漿 - 創意寫作平台 Creative writing platform**
+# 一杯豆漿 - 創意寫作平台
 
-## 簡介
-這是一個紀錄創意的寫作平台，旨在提供用戶一個輕鬆寫作記錄的環境。
+一個提供用戶輕鬆寫作、分享創意的平台。用戶可以發表文章、收藏喜歡的作品、留下評論，並管理個人頁面。
 
-[創意寫作平台cakeresume製作分享](https://www.cakeresume.com/portfolios/165659)
+[CakeResume 作品集介紹](https://www.cakeresume.com/portfolios/165659)
 
+---
 
-## 發想
-這個平台的發想來自對於創意寫作的熱愛和追求。致力打造能讓用戶分享創造力跟想法的平台，讓每一個人都能夠成為自己的故事大師。
 ## 開發工具
-- Microsoft.AspNet.Mvc 5.2.9
-- jQuery 3.4.1
-- Bootstrap 5.2.3
-- MongoDB.Driver 2.24.0
 
-## 資料關係設計
+| 類別 | 技術 |
+|------|------|
+| Backend | ASP.NET MVC 5.2.9 (.NET Framework 4.7.2) |
+| Database | MongoDB Atlas (MongoDB.Driver 2.24.0) |
+| Frontend | Razor、Bootstrap 5.2.3、jQuery 3.4.1 |
 
-![20240400一杯豆漿創作平台資料庫設計 (1)](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/fb2fc784-c920-44d5-afd9-7d3e9d63b0ed)
+---
 
+## 功能說明
 
+- **會員系統** — 註冊、登入、登出，支援訪客 / 一般會員 / 管理員三種角色
+- **文章管理** — 新增、編輯、閱讀文章，支援依時間、愛心數、瀏覽數、標題排序
+- **互動功能** — 對文章按愛心、加入收藏，瀏覽數自動累計
+- **評論系統** — 在文章下方留言，支援對評論按愛心
+- **個人頁面** — 查看與編輯個人資料、瀏覽自己的文章與收藏
 
-## 初始化注意
-在使用之前，注意更改Web.config文件並填寫相應的用戶名和密碼等資料，這步驟是確保平台資料庫可以使用。
+---
 
-1. 修改Web.example.config其中的內容，填入自己的MongoDB連線資料
+## 資料庫設計
+
+![資料庫設計](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/fb2fc784-c920-44d5-afd9-7d3e9d63b0ed)
+
+**Collections：**
+
+| Collection | 主要欄位 |
+|------------|---------|
+| Member | MemberID、Name、Account、Password（SHA256）、Authentication（角色） |
+| Article | ArticleId、Title、AuthorID、Content、FavoriteNumber、ClickNumber、DisplayStatus |
+| Collect | CollectID、MemberID、ArticleId |
+| Comment | CommentID、ArticleId、MemberID、CommentContent、FavoriteNumber、DisplayStatus |
+
+---
+
+## 快速開始
+
+### 前置需求
+
+- Visual Studio 2019 或 2022
+- MongoDB Atlas 帳號（或自架 MongoDB）
+
+### 步驟
+
+**1. 設定資料庫連線**
+
+將 `Web.example.config` 複製並改名為 `Web.config`，填入你的 MongoDB 帳密：
+
+```xml
+<add key="Username" value="你的帳號" />
+<add key="Password" value="你的密碼" />
 ```
-<add key="Username" value=" YourUsername " />
-<add key="Password" value=" YourPassword " />
+
+**2. 開啟專案**
+
+以 Visual Studio 開啟 `NotX.sln`
+
+**3. 還原 NuGet 套件**
+
+Visual Studio 通常會自動還原，或在 Package Manager Console 執行：
+
 ```
-2. 更改Web.example.config成Web.config
+Update-Package -reinstall
+```
 
-## 畫面呈現
+**4. 執行**
 
-開啟畫面
-![0 開啟畫面](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/be2ff88d-b657-41e7-91c7-977379c99469)
+按 `F5`，預設網址為 `https://localhost:44377`
 
-當用戶登入後，他們可以瀏覽其他用戶發佈的文章，並選擇喜歡的排序方式。
-![3 選擇想要關注的排列方式](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/45ea6d07-234e-4b8b-9d18-581a2f52c90f)
+---
 
-用戶可以自由地撰寫和修改自己的文章內容。
-![4 自己寫文章](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/357b75fc-be83-43b1-9042-1384204626d7)
+## 專案結構
 
-平台會統計文章的觀看數，並允許用戶對文章進行愛心和收藏操作。
-![5 看到別人寫的文章3](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/76fc0eeb-2f05-41ea-a175-6e5a87fb49de)
+```
+NotX/
+├── Controllers/    # MVC 控制器（Article、Member、User、Comment、Collect 等）
+├── Models/         # 資料模型與 MongoDB 操作邏輯
+├── Views/          # Razor CSHTML 頁面
+├── Scripts/        # 前端 JavaScript（AJAX 互動）
+├── Filters/        # 自訂授權 Filter
+├── Web.example.config  # 設定範本（需改名為 Web.config）
+└── Global.asax     # 應用程式生命週期設定
+```
 
+---
 
-用戶可以查看和修改自己的個人資訊和設置。
-![6 個人資料](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/7889528e-5b37-4c0b-9e8a-5058d58371f8)
+## 畫面截圖
 
-在個人資訊頁面，您可以輕鬆地查看您自己的文章
+**首頁**
 
-![7 自己文章可以在自己的介面找到](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/772b7b40-ecca-4772-adf3-fdcf2c065ab4)
+![首頁](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/be2ff88d-b657-41e7-91c7-977379c99469)
 
+**文章列表（可選擇排序方式）**
 
-同樣地，您也可以找到自己收藏的文章，方便您隨時查閱您感興趣的內容。
-![8 找到自己收藏的文章](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/259410a4-d78a-4624-8922-89bfa53ecace)
+![文章列表](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/45ea6d07-234e-4b8b-9d18-581a2f52c90f)
+
+**撰寫文章**
+
+![撰寫文章](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/357b75fc-be83-43b1-9042-1384204626d7)
+
+**文章閱讀（愛心、收藏、瀏覽數）**
+
+![文章閱讀](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/76fc0eeb-2f05-41ea-a175-6e5a87fb49de)
+
+**個人資料**
+
+![個人資料](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/7889528e-5b37-4c0b-9e8a-5058d58371f8)
+
+**我的文章**
+
+![我的文章](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/772b7b40-ecca-4772-adf3-fdcf2c065ab4)
+
+**我的收藏**
+
+![我的收藏](https://github.com/LAI-Recycle/Creative-Writing-Platform/assets/77723979/259410a4-d78a-4624-8922-89bfa53ecace)
